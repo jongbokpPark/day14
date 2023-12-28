@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      #wrapper {
+        width: 1200px;
+        height: 200px;
+        overflow: hidden;
+        background: navy;
+        margin: 0;
+      }
+      #slider {
+        font-size: 0;
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+      #slider img {
+        width: 285px;
+        /* height: 100%; */
+        object-fit: cover;
+        margin-right: 15px;
+      }
+    </style>
+
+    <script>
+      window.addEventListener("load", function () {
+        let wrapper = document.getElementById("wrapper");
+        let slider = document.getElementById("slider");
+
+        let imgs = [
+          "../images/ocean/pexels1350197.jpg",
+          "../images/ocean/pexels1655166.jpg",
+          "../images/ocean/pexels235990.jpg",
+          "../images/ocean/pexels273886.jpg",
+          "../images/ocean/pexels386025.jpg",
+          "../images/ocean/pexels462162.jpg",
+        ];
+
+        let currentIndex = 0;
+
+        function showImage(index) {
+          let onSlider = -index * 100;
+          slider.style.transform = `translateX(${onSlider}%)`;
+        }
+
+        function nextSlider() {
+          currentIndex = (currentIndex + 1) % imgs.length;
+          showImage(currentIndex);
+        }
+
+        setInterval(nextSlider, 3000);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="slider">
+        <img src="../images/ocean/pexels1350197.jpg" alt="Ocean Image" />
+        <img src="../images/ocean/pexels1655166.jpg" alt="Ocean Image" />
+        <img src="../images/ocean/pexels235990.jpg" alt="Ocean Image" />
+        <img src="../images/ocean/pexels273886.jpg" alt="Ocean Image" />
+        <img src="../images/ocean/pexels386025.jpg" alt="Ocean Image" />
+        <img src="../images/ocean/pexels462162.jpg" alt="Ocean Image" />
+      </div>
+    </div>
+  </body>
+</html>

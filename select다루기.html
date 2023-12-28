@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #wrapper {
+        width: 300px;
+        height: 600px;
+        background: yellow;
+        margin: 0 auto;
+        text-align: center;
+      }
+      #wrapper input {
+        width: 96%;
+        height: 35px;
+      }
+      #wrapper select {
+        width: 98%;
+        height: 500px;
+        margin: 5px 0;
+        background: navy;
+        color: white;
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      let input;
+
+      // select박스에 input에서 입력한 데이터를 option으로 추가
+      //   function addItem() {
+      //     let sel = document.querySelector("select");
+      //     let inputValue = input.value;
+
+      //     if (inputValue !== "") {
+      //       let op = document.createElement("option");
+      //       op.text = inputValue;
+      //       op.value = inputValue;
+      //       sel.add(op);
+      //       input.value = "";
+      //     }
+
+      //     console.log(inputValue);
+      //   }
+
+      function addItem() {
+        // 셀렉트 박스에 인풋에서 입력한 데이터를 option으로 추가하자..
+
+        let op = document.createElement("option");
+        op.text = input.value;
+
+        //생성된 옵션을 셀렉트 박스에 자식으로 추가하자 ..
+        let sel = document.querySelector("select");
+        sel.add(op);
+        input.value = "";
+      }
+
+      // 셀렉트 박스가 보유한 옵션들 중 선택된 요소만 제거
+      function del() {
+        let sel = document.querySelector("select");
+        sel.remove(sel.selectedIndex);
+      }
+
+      function delAll() {
+        let sel = document.querySelector("select");
+        let len = sel.options.length;
+
+        for (let i = 0; i < len; i++) {
+          sel.remove(0);
+        }
+      }
+
+      addEventListener("load", function () {
+        input = document.querySelector("input");
+        input.addEventListener("keyup", function () {
+          if (event.keyCode == 13) {
+            addItem();
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <input type="text" placeholder="과일명을 입력.." />
+      <select multiple name="" id=""></select>
+      <button onclick="del()">선택삭제</button>
+      <button onclick="delAll()">모두삭제</button>
+    </div>
+  </body>
+</html>
